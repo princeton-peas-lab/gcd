@@ -1,0 +1,9 @@
+# Python bytecode and cache
+__pycache__/
+*.py[cod]
+*$py.class
+results*/
+experiments*/
+reb*/
+plots*/
+setup_env.sh

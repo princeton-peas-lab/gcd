@@ -1,0 +1,12 @@
+torch
+transformers
+datasets
+accelerate
+bitsandbytes
+wandb
+pyyaml
+simple-slurm
+tqdm
+nanogcg
+
+
