@@ -163,7 +163,7 @@ experiments:
     first_stop: true
     normalize_guidance_losses: true
     self_perplexity: true
-    use_raw_ppl: false
+    use_raw_ppl: true
     self_perplexity_coef:
     - 0.2
     - 0.2
