@@ -15,14 +15,12 @@ global:
     huggingface:
       # Primary directory for new model downloads (run `bash download_models.sh`).
       # HF_HOME is set to this path; new downloads land here.
-      cache_dir: "./models"
+      cache_dir: "/models"
       # Ordered list of directories searched when loading a model repo ID.
       # The first directory containing the model wins.  Add any pre-existing
       # HuggingFace caches here so the code finds models without re-downloading.
       cache_dirs:
-        - "./models"                                    # local downloads (download_models.sh)
-        - "/scratch/gpfs/KOROLOVA/huggingface"          # main shared HF cache (Dream, Mistral, Qwen, Llama, Guard, HarmBench, …)
-        - "/scratch/gpfs/KOROLOVA/bt4811/hf_cache"      # secondary cache (Qwen2.5, Gemma, StrongREJECT, HarmBench judges)
+        - "/models"                                     # default download location (download_models.sh)
       
       offline_mode: true   # compute nodes have no internet; search cache_dirs only
     wandb:
@@ -97,7 +95,7 @@ experiments:
     top_k_end: 32
     top_k_total: false
     eval_batch_size: 512
-    candidate_batch_pct: 0.2
+    candidate_batch_pct: 0.15
     num_tunable_tokens: 80
     pre_compute_mask: true
     never_repeat: false
@@ -163,7 +161,7 @@ experiments:
     first_stop: true
     normalize_guidance_losses: true
     self_perplexity: true
-    use_raw_ppl: true
+    use_raw_ppl: false
     self_perplexity_coef:
     - 0.2
     - 0.2
@@ -299,12 +297,12 @@ experiments:
   mistral:
     inherit: _base
     random_pos_reference_len: 80
-    candidate_batch_pct: 0.1
+    candidate_batch_pct: 0.15
 
   qwen:
     inherit: mistral
     max_time_attack_full: 25
-    candidate_batch_pct: 0.2
+    candidate_batch_pct: 0.15
     phase2_div_loss_coef: 0.1
 
     models:
