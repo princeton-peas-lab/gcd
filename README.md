@@ -1,6 +1,6 @@
 # GCD
 
-Implementation and evaluation harness for **Greedy Coordinate Diffusion (GCD)**, an ICML 2026 jailbreak attack. GCD uses a masked diffusion language model (Dream-v0-Instruct-7B) to iteratively optimize an adversarial suffix that causes a victim LLM to begin its reply with a specified harmful target prefix.
+Official implementation of Greedy Coordinate Diffusion (GCD), a jailbreak attack presented at ICML 2026. GCD uses a masked diffusion language model (Dream-v0-Instruct-7B) to iteratively optimize an adversarial suffix that causes a victim LLM to begin its reply with a specified harmful target prefix.
 
 ---
 
