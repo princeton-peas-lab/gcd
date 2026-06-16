@@ -316,6 +316,7 @@ experiments:
   _base:                              # shared defaults inherited by all experiments
     num_steps: 800
     candidate_batch_pct: 0.15
+    max_time_attack_full: 55          # per-attack time budget (minutes)
     models:
       dream_model: "Dream-org/Dream-v0-Instruct-7B"
       victim_model: "mistralai/Mistral-7B-Instruct-v0.3"
@@ -323,6 +324,9 @@ experiments:
     slurm:
       n_jobs: 12
       gpus_per_job: 4
+      time: "01:00:00"
+      partition: null
+      constraint: gpu80
 
   mistral:
     inherit: _base                    # deep-merge _base; child values override
@@ -341,11 +345,13 @@ Child experiments inherit all parent keys; child values override. Resolution is 
 | Key | Victim | Notes |
 |---|---|---|
 | `mistral` | Mistral-7B-Instruct-v0.3 | Primary baseline |
-| `qwen` | Qwen2.5-7B-Instruct | ailab partition |
-| `llama` | Llama-3-8B-Instruct | ailab partition |
+| `qwen` | Qwen2.5-7B-Instruct | — |
+| `llama` | Llama-3-8B-Instruct | — |
 | `mistral_def` | Mistral + Llama Guard | Defence evasion variant |
 | `qwen_def` | Qwen + Llama Guard | Defence evasion variant |
 | `llama_def` | Llama + Llama Guard | Defence evasion variant |
+
+All experiments run on `gpu80` nodes (`constraint: gpu80`, `partition: null`) with a 1-hour SLURM time limit and 55-minute per-attack budget (`max_time_attack_full: 55`). Each submits 12 jobs (`n_jobs: 12`) of 4 GPUs each.
 
 ### Swapping models
 

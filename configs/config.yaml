@@ -223,6 +223,7 @@ experiments:
       mail_type: END,FAIL
       mail_user: your_email@example.com  # update to your email for SLURM notifications
       default_gpu80_constraint: false
+      partition: null
       constraint: gpu80
     forbidden_diffusion_tokens:
     - <|mask|>
@@ -301,7 +302,7 @@ experiments:
 
   qwen:
     inherit: mistral
-    max_time_attack_full: 25
+    max_time_attack_full: 55
     candidate_batch_pct: 0.15
     phase2_div_loss_coef: 0.1
 
@@ -309,25 +310,25 @@ experiments:
       victim_model: Qwen/Qwen2.5-7B-Instruct
 
     slurm:
-      n_jobs: 6
+      n_jobs: 12
       time: 01:00:00
-      partition: ailab
-      constraint: null
+      partition: null
+      constraint: gpu80
       tasks_per_job: 4
       gpus_per_job: 4
 
   llama:
     inherit: mistral
     add_prefix_target: null
-    max_time_attack_full: 25
+    max_time_attack_full: 55
     models:
       victim_model: meta-llama/Meta-Llama-3-8B-Instruct
 
     slurm:
-      n_jobs: 6
+      n_jobs: 12
       time: 01:00:00
-      partition: ailab
-      constraint: null
+      partition: null
+      constraint: gpu80
       tasks_per_job: 4
       gpus_per_job: 4
 
